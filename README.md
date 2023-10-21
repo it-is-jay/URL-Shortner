@@ -1,7 +1,7 @@
 # URL-Shortner
 A simple web page that gets URL and returns a shortened URL
 
-#python venv
+# Python venv
 I have created new python virtual environment which includes all flask and required dependencies.
 venv folder contains dependencies.
 
