@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>URL Shortener</title>
+    <style>
+        /* Add your CSS styling here */
+    </style>
+</head>
+<body>
+    <h1>URL Shortener</h1>
+    <form id="shorten-form">
+        <input type="text" id="long_url" placeholder="Enter a long URL">
+        <button type="button" onclick="shortenURL()">Shorten</button>
+    </form>
+    <p>Shortened URL: <span id="shortened-url"></span></p>
+    
+    <script>
+        function shortenURL() {
+            var long_url = document.getElementById("long_url").value;
+
+            fetch('/shorten', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: 'long_url=' + long_url
+            })
+            .then(response => response.json())
+            .then(data => {
+                var fullURL = 'http://127.0.0.1:5000/' + data.short_url;
+                document.getElementById("shortened-url").innerHTML = `<a href="${fullURL}">${fullURL}</a>`;
+            });
+        }
+    </script>
+</body>
+</html>
